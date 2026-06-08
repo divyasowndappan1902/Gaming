@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Master Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-active">
+    <!-- Dashboard View -->
+    <section id="dashboard-view" class="view active">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.webp" alt="STACKLY" style="height: 40px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));">
+                </div>
+                <div class="portal-badge" id="portal-badge" style="color: #f0f; text-shadow: 0 0 5px #f0f;">GAME MASTER</div>
+            </div>
+
+            <ul class="sidebar-nav" id="admin-nav">
+                <li class="active" data-target="admin-main"><span class="icon">🖥️</span> Server Overview</li>
+                <li data-target="admin-facility"><span class="icon">👥</span> Player Moderation</li>
+                <li data-target="admin-initiatives"><span class="icon">🌍</span> Zone Management</li>
+                <li data-target="admin-network"><span class="icon">⚙️</span> Game Config</li>
+                <li data-target="admin-gene"><span class="icon">💰</span> Economy Control</li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-link" onclick="window.location.href='index.html'"><span class="icon text-red">🚪</span> Disconnect</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Layout -->
+        <div class="main-layout">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button class="icon-btn mobile-menu-btn" style="display: none; border: none; background: transparent; cursor: pointer; padding: 0;">☰</button>
+                    <div class="search-box">
+                        <span class="icon">🔍</span>
+                        <input type="text" placeholder="Search logs, IPs, Game IDs...">
+                    </div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="icon-btn" style="color: #f0f;" onclick="window.location.href='404.html'">🏠</button>
+                    <button class="icon-btn" style="color: #f0f;" onclick="window.location.href='404.html'">🔔</button>
+                    <div class="user-profile">
+                        <div class="user-text">
+                            <span class="user-name" id="user-greeting" style="text-shadow: 0 0 5px #f0f;">RootAdmin</span>
+                            <span class="user-email" style="color: #f0f;">Level 999 Game Master</span>
+                        </div>
+                        <div class="avatar" style="border-color: #f0f; box-shadow: 0 0 5px #f0f; color: #f0f;">🛡️</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="content-wrapper">
+                <div id="admin-widgets" class="role-specific-content active">
+                    
+                    <div id="admin-main" class="tab-pane active">
+                        <div class="page-title">
+                            <h1 style="text-shadow: 0 0 10px #f0f;">🖥️ Server Overview</h1>
+                            <p>Global infrastructure status and moderation alerts.</p>
+                        </div>
+
+                        <!-- Top Stats Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-box border-magenta">
+                                <div class="stat-icon">⚡</div>
+                                <div class="stat-label">Server Uptime</div>
+                                <div class="stat-val">99.9%</div>
+                                <div class="stat-trend text-magenta">Stable</div>
+                            </div>
+                            <div class="stat-box border-cyan">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-label">Concurrent Players</div>
+                                <div class="stat-val">12,458</div>
+                                <div class="stat-trend text-cyan">+12% Peak</div>
+                            </div>
+                            <div class="stat-box border-yellow">
+                                <div class="stat-icon">🚨</div>
+                                <div class="stat-label">Cheat Reports</div>
+                                <div class="stat-val">14</div>
+                                <div class="stat-trend text-yellow">Needs Review</div>
+                            </div>
+                            <div class="stat-box border-purple">
+                                <div class="stat-icon">💸</div>
+                                <div class="stat-label">Market Value</div>
+                                <div class="stat-val">24.5B</div>
+                                <div class="stat-trend text-purple">Economy Healthy</div>
+                            </div>
+                        </div>
+
+                        <!-- Middle Grid -->
+                        <div class="middle-grid">
+                            <!-- Chart Panel -->
+                            <div class="panel">
+                                <h3 class="panel-title">📊 Realm Node Utilization</h3>
+                                <div class="chart-section">
+                                    <div class="chart-label">NA-East Nodes (%)</div>
+                                    <div class="bar-chart">
+                                        <div class="bar bg-magenta" style="width: 25%"></div>
+                                        <div class="bar bg-magenta-glow" style="width: 45%"></div>
+                                        <div class="bar bg-magenta-glow" style="width: 60%"></div>
+                                        <div class="bar bg-magenta" style="width: 30%"></div>
+                                        <div class="bar bg-magenta-glow" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-section">
+                                    <div class="chart-label">EU-Central Nodes (%)</div>
+                                    <div class="bar-chart">
+                                        <div class="bar bg-cyan" style="width: 80%"></div>
+                                        <div class="bar bg-cyan-glow" style="width: 90%"></div>
+                                        <div class="bar bg-cyan-glow" style="width: 95%"></div>
+                                        <div class="bar bg-cyan" style="width: 85%"></div>
+                                        <div class="bar bg-cyan-glow" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Panel -->
+                            <div class="panel">
+                                <h3 class="panel-title">⚙️ Server Controls</h3>
+                                <div class="form-row">
+                                    <div class="form-group-light">
+                                        <label style="color: #f0f;">XP Multiplier</label>
+                                        <input type="text" value="1.5x (Weekend)" class="input-light" style="border-color: #f0f;">
+                                    </div>
+                                    <div class="form-group-light">
+                                        <label style="color: #f0f;">Max Player Cap</label>
+                                        <input type="text" value="20,000" class="input-light" style="border-color: #f0f;">
+                                    </div>
+                                </div>
+                                <div class="form-group-light">
+                                    <label style="color: #f0f;">Global Announcement</label>
+                                    <input type="text" class="input-light" placeholder="Broadcast to all players..." style="border-color: #f0f;">
+                                </div>
+                                <div class="form-group-light">
+                                    <label style="color: #f0f;">Maintenance Mode</label>
+                                    <select class="input-light" style="border-color: #f0f;">
+                                        <option>Online</option>
+                                        <option>Scheduled (1 Hour)</option>
+                                        <option>Lockdown</option>
+                                    </select>
+                                </div>
+                                <button class="btn-submit" style="margin-bottom: 0; color: #f0f; border-color: #f0f; box-shadow: inset 0 0 10px rgba(255,0,255,0.2), 0 0 10px rgba(255,0,255,0.2);" onclick="window.location.href='404.html'">EXECUTE OVERRIDE</button>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Grid -->
+                        <div class="bottom-grid">
+                            <!-- Portal Access Panel -->
+                            <div class="panel">
+                                <h3 class="panel-title">⚡ Admin Tools</h3>
+                                <div class="portal-grid">
+                                    <div class="portal-tile bg-magenta-dark">
+                                        <span class="icon">🔨</span> Ban Hammer
+                                    </div>
+                                    <div class="portal-tile bg-cyan-dark">
+                                        <span class="icon">🗺️</span> Map Editor
+                                    </div>
+                                    <div class="portal-tile bg-purple-dark">
+                                        <span class="icon">📜</span> Log Viewer
+                                    </div>
+                                    <div class="portal-tile bg-yellow-dark">
+                                        <span class="icon">📈</span> Live DB
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alerts Panel -->
+                            <div class="panel">
+                                <h3 class="panel-title">🚨 Security Audit</h3>
+                                <ul class="alert-list">
+                                    <li class="alert-item alert-red">
+                                        <div class="dot red-dot"></div>
+                                        <div class="alert-text">
+                                            <strong>DDoS Mitigation Active</strong>
+                                            <span>EU-Central Gateway — 2 min ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="alert-item alert-yellow">
+                                        <div class="dot yellow-dot"></div>
+                                        <div class="alert-text">
+                                            <strong>Suspicious Trading Volume</strong>
+                                            <span>PlayerID: 88472 — 15 min ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="alert-item alert-cyan">
+                                        <div class="dot cyan-dot"></div>
+                                        <div class="alert-text">
+                                            <strong>Routine Backup Completed</strong>
+                                            <span>Player Databases — Success</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Player Moderation -->
+                    <div id="admin-facility" class="tab-pane">
+                        <div class="page-title">
+                            <h1 style="text-shadow: 0 0 10px #f0f;">👥 Player Moderation</h1>
+                            <p>Manage reports, bans, and warnings across all realms.</p>
+                        </div>
+
+                        <!-- Moderation Stats Grid -->
+                        <div class="stats-grid" style="margin-bottom: 2rem;">
+                            <div class="stat-box border-magenta">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">🚨</div>
+                                <div class="stat-label">Open Tickets</div>
+                                <div class="stat-val">124</div>
+                            </div>
+                            <div class="stat-box border-cyan">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">⚖️</div>
+                                <div class="stat-label">Appeals Pending</div>
+                                <div class="stat-val">18</div>
+                            </div>
+                            <div class="stat-box border-yellow">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">🔨</div>
+                                <div class="stat-label">Bans (24h)</div>
+                                <div class="stat-val">42</div>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid" style="grid-template-columns: 1fr;">
+                            <div class="panel">
+                                <h3 class="panel-title">📋 Active Reports</h3>
+                                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size:0.95rem;">
+                                    <tr style="border-bottom: 2px solid rgba(0, 255, 255, 0.2); color:#0ff;">
+                                        <th style="padding: 1rem 0;">Player ID</th>
+                                        <th style="padding: 1rem 0;">Reported For</th>
+                                        <th style="padding: 1rem 0;">Status</th>
+                                        <th style="padding: 1rem 0;">Action</th>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                        <td style="padding: 1rem 0; color:#fff;"><strong>xX_Sniper_Xx</strong></td>
+                                        <td style="padding: 1rem 0; color:#f0f;">Aimbot Detected</td>
+                                        <td style="padding: 1rem 0;"><span class="event-badge bg-magenta-dark" style="padding: 4px 8px; border-radius: 4px;">Under Review</span></td>
+                                        <td style="padding: 1rem 0;">
+                                            <button class="btn-submit" style="padding: 0.4rem 0.8rem; font-size: 0.7rem; margin: 0; width: auto; display: inline-block;" onclick="window.location.href='404.html'">BAN</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                        <td style="padding: 1rem 0; color:#fff;"><strong>LootGoblin99</strong></td>
+                                        <td style="padding: 1rem 0; color:#ff0;">Toxicity / Harassment</td>
+                                        <td style="padding: 1rem 0;"><span class="event-badge bg-yellow-dark" style="padding: 4px 8px; border-radius: 4px;">Reported 3x</span></td>
+                                        <td style="padding: 1rem 0;">
+                                            <button class="btn-submit" style="padding: 0.4rem 0.8rem; font-size: 0.7rem; margin: 0; width: auto; display: inline-block; color: #0ff; border-color: #0ff; box-shadow: none;" onclick="window.location.href='404.html'">MUTE</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 1rem 0; color:#fff;"><strong>GlitchWalker</strong></td>
+                                        <td style="padding: 1rem 0; color:#0ff;">Map Exploiting</td>
+                                        <td style="padding: 1rem 0;"><span class="event-badge bg-cyan-dark" style="padding: 4px 8px; border-radius: 4px;">Verified</span></td>
+                                        <td style="padding: 1rem 0;">
+                                            <button class="btn-submit" style="padding: 0.4rem 0.8rem; font-size: 0.7rem; margin: 0; width: auto; display: inline-block; color: #ff0; border-color: #ff0; box-shadow: none;" onclick="window.location.href='404.html'">KICK</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid">
+                            <div class="panel">
+                                <h3 class="panel-title">🔨 Quick Ban Hammer</h3>
+                                <div class="form-group-light">
+                                    <label style="color: #f0f;">Target Gamertag / ID</label>
+                                    <input type="text" placeholder="Enter player name..." class="input-light" style="border-color: #f0f;">
+                                </div>
+                                <div class="form-group-light">
+                                    <label style="color: #f0f;">Reason</label>
+                                    <select class="input-light" style="border-color: #f0f;">
+                                        <option>Cheating/Hacking</option>
+                                        <option>Harassment</option>
+                                        <option>Exploiting</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <button class="btn-submit" style="margin-bottom: 0; color: #f0f; border-color: #f0f; box-shadow: inset 0 0 10px rgba(255,0,255,0.2), 0 0 10px rgba(255,0,255,0.2);" onclick="window.location.href='404.html'">EXECUTE BAN</button>
+                            </div>
+                            <div class="panel">
+                                <h3 class="panel-title">📜 Moderation Log</h3>
+                                <ul class="event-list" style="color: #94a3b8; font-size: 0.85rem; padding-left: 1rem;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #0ff;">[SYSTEM]</strong> Auto-banned 43 bot accounts (IP block).</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #f0f;">[Mod_Alpha]</strong> Muted user 'ToxicDude' for 24 hours.</li>
+                                    <li><strong style="color: #0ff;">[SYSTEM]</strong> Appeal #4829 granted (Unban).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone Management -->
+                    <div id="admin-initiatives" class="tab-pane">
+                        <div class="page-title">
+                            <h1 style="text-shadow: 0 0 10px #f0f;">🌍 Zone Management</h1>
+                            <p>Global instance load, region status, and node orchestration.</p>
+                        </div>
+
+                        <!-- Zone Stats Grid -->
+                        <div class="stats-grid" style="margin-bottom: 2rem;">
+                            <div class="stat-box border-cyan">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">🌐</div>
+                                <div class="stat-label">Active Regions</div>
+                                <div class="stat-val">8 / 8</div>
+                            </div>
+                            <div class="stat-box border-magenta">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">⚠️</div>
+                                <div class="stat-label">Nodes Stressed</div>
+                                <div class="stat-val">3</div>
+                            </div>
+                            <div class="stat-box border-purple">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">⚡</div>
+                                <div class="stat-label">Avg. Latency</div>
+                                <div class="stat-val">34ms</div>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid" style="grid-template-columns: 1fr;">
+                            <div class="panel">
+                                <h3 class="panel-title">🗺️ Regional Server Status</h3>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                                    <!-- NA-East -->
+                                    <div style="background: rgba(0, 255, 255, 0.05); border: 1px solid rgba(0, 255, 255, 0.2); padding: 1.5rem; border-radius: 6px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                            <strong style="color: #fff; font-size: 1.2rem; text-shadow: 0 0 5px #0ff;">NA-East</strong>
+                                            <span class="dot cyan-dot" style="width: 12px; height: 12px;"></span>
+                                        </div>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Status: <span style="color: #0ff; font-weight: bold;">Online (Stable)</span></p>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Players: 8,432 / 10,000</p>
+                                        <div class="bar-chart" style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                                            <div class="bar bg-cyan" style="width: 84%; height: 100%;"></div>
+                                        </div>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; flex: 1; margin: 0; box-shadow: none; color: #0ff; border-color: rgba(0,255,255,0.5);" onclick="window.location.href='404.html'">RESTART NODE</button>
+                                        </div>
+                                    </div>
+                                    <!-- EU-Central -->
+                                    <div style="background: rgba(255, 0, 255, 0.05); border: 1px solid rgba(255, 0, 255, 0.2); padding: 1.5rem; border-radius: 6px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                            <strong style="color: #fff; font-size: 1.2rem; text-shadow: 0 0 5px #f0f;">EU-Central</strong>
+                                            <span class="dot magenta-dot" style="width: 12px; height: 12px; background: #f0f; box-shadow: 0 0 5px #f0f; border-radius: 50%;"></span>
+                                        </div>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Status: <span style="color: #f0f; font-weight: bold;">Heavy Load</span></p>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Players: 9,800 / 10,000</p>
+                                        <div class="bar-chart" style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                                            <div class="bar bg-magenta-glow" style="width: 98%; height: 100%;"></div>
+                                        </div>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; flex: 1; margin: 0; background: rgba(255,0,255,0.2); color: #fff; border-color: #f0f; box-shadow: 0 0 10px rgba(255,0,255,0.3);" onclick="window.location.href='404.html'">ADD CAPACITY</button>
+                                        </div>
+                                    </div>
+                                    <!-- AP-South -->
+                                    <div style="background: rgba(255, 255, 0, 0.05); border: 1px solid rgba(255, 255, 0, 0.2); padding: 1.5rem; border-radius: 6px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                            <strong style="color: #fff; font-size: 1.2rem; text-shadow: 0 0 5px #ff0;">AP-South</strong>
+                                            <span class="dot yellow-dot" style="width: 12px; height: 12px;"></span>
+                                        </div>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Status: <span style="color: #ff0; font-weight: bold;">Maintenance</span></p>
+                                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.5rem;">Players: 0 / 5,000</p>
+                                        <div class="bar-chart" style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                                            <div class="bar" style="background: #ff0; width: 0%; height: 100%;"></div>
+                                        </div>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; flex: 1; margin: 0; color: #ff0; border-color: #ff0; box-shadow: none; background: transparent;" onclick="window.location.href='404.html'">BRING ONLINE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid">
+                            <div class="panel">
+                                <h3 class="panel-title">🚀 Instance Deployment</h3>
+                                <div class="form-group-light">
+                                    <label style="color: #0ff;">Select Region</label>
+                                    <select class="input-light" style="border-color: #0ff;">
+                                        <option>NA-West</option>
+                                        <option>SA-East</option>
+                                        <option>ME-Central</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-light">
+                                    <label style="color: #0ff;">Instance Type</label>
+                                    <select class="input-light" style="border-color: #0ff;">
+                                        <option>PvE Realm (Standard)</option>
+                                        <option>PvP War Zone (High Tickrate)</option>
+                                        <option>Event Server (Temporary)</option>
+                                    </select>
+                                </div>
+                                <button class="btn-submit" style="margin-bottom: 0; color: #0ff; border-color: #0ff; box-shadow: inset 0 0 10px rgba(0,255,255,0.2), 0 0 10px rgba(0,255,255,0.2);" onclick="window.location.href='404.html'">DEPLOY NEW NODE</button>
+                            </div>
+                            <div class="panel">
+                                <h3 class="panel-title">🛡️ Global Network Firewalls</h3>
+                                <ul class="event-list" style="color: #94a3b8; font-size: 0.9rem; padding-left: 1rem; line-height: 1.6;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #0ff;">DDoS Protection:</strong> ACTIVE (Layer 7 filtering)</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #f0f;">Packet Loss:</strong> 0.02% (Global Average)</li>
+                                    <li><strong style="color: #ff0;">Auto-Scaling:</strong> ENABLED (Threshold: 85%)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game Config -->
+                    <div id="admin-network" class="tab-pane">
+                        <div class="page-title">
+                            <h1 style="text-shadow: 0 0 10px #f0f;">⚙️ Game Config</h1>
+                            <p>Tweak global multipliers, rule sets, and live event triggers.</p>
+                        </div>
+
+                        <div class="middle-grid" style="grid-template-columns: 1fr 1fr;">
+                            <!-- Global Multipliers -->
+                            <div class="panel">
+                                <h3 class="panel-title">📈 Global Multipliers</h3>
+                                <div class="form-group-light" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <label style="color: #0ff; margin-bottom: 0;">Global XP Rate</label>
+                                        <span style="color: #fff; font-weight: bold;">1.5x</span>
+                                    </div>
+                                    <input type="range" class="range-slider" style="width: 100%; accent-color: #0ff;" min="1" max="5" step="0.1" value="1.5">
+                                </div>
+                                <div class="form-group-light" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <label style="color: #f0f; margin-bottom: 0;">Loot Drop Chance Multiplier</label>
+                                        <span style="color: #fff; font-weight: bold;">2.0x</span>
+                                    </div>
+                                    <input type="range" class="range-slider" style="width: 100%; accent-color: #f0f;" min="1" max="5" step="0.1" value="2.0">
+                                </div>
+                                <div class="form-group-light" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <label style="color: #ff0; margin-bottom: 0;">Resource Gathering Rate</label>
+                                        <span style="color: #fff; font-weight: bold;">1.0x</span>
+                                    </div>
+                                    <input type="range" class="range-slider" style="width: 100%; accent-color: #ff0;" min="1" max="5" step="0.1" value="1.0">
+                                </div>
+                                <button class="btn-submit" style="margin-bottom: 0; color: #0ff; border-color: #0ff; box-shadow: inset 0 0 10px rgba(0,255,255,0.2), 0 0 10px rgba(0,255,255,0.2);" onclick="window.location.href='404.html'">UPDATE MULTIPLIERS</button>
+                            </div>
+
+                            <!-- Rulesets -->
+                            <div class="panel">
+                                <h3 class="panel-title">📜 Core Rulesets</h3>
+                                <div class="form-group-light" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                                    <div>
+                                        <strong style="color: #fff;">Friendly Fire</strong>
+                                        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">Allow damage between guild members.</p>
+                                    </div>
+                                    <select class="input-light" style="width: auto; border-color: #f0f;">
+                                        <option>Disabled</option>
+                                        <option>Enabled</option>
+                                        <option>Arena Only</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-light" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1rem 0;">
+                                    <div>
+                                        <strong style="color: #fff;">Death Penalty</strong>
+                                        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">What happens to loot on death.</p>
+                                    </div>
+                                    <select class="input-light" style="width: auto; border-color: #0ff;">
+                                        <option>Drop All Inventory</option>
+                                        <option>Durability Loss</option>
+                                        <option>Safe Keep</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-light" style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem;">
+                                    <div>
+                                        <strong style="color: #fff;">Max Level Cap</strong>
+                                        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">Current maximum character level.</p>
+                                    </div>
+                                    <input type="number" class="input-light" value="99" style="width: 80px; text-align: center; border-color: #ff0;">
+                                </div>
+                                <button class="btn-submit" style="margin-top: 1.5rem; margin-bottom: 0; color: #f0f; border-color: #f0f; box-shadow: inset 0 0 10px rgba(255,0,255,0.2), 0 0 10px rgba(255,0,255,0.2);" onclick="window.location.href='404.html'">SAVE RULESETS</button>
+                            </div>
+                        </div>
+
+                        <!-- Live Events -->
+                        <div class="middle-grid" style="grid-template-columns: 1fr;">
+                            <div class="panel">
+                                <h3 class="panel-title">🎉 Live Event Triggers</h3>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                                    <div style="background: rgba(0, 255, 255, 0.05); border: 1px solid rgba(0, 255, 255, 0.2); padding: 1.5rem; border-radius: 6px; text-align: center;">
+                                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">❄️</div>
+                                        <h4 style="color: #0ff; margin-bottom: 0.5rem; font-family: 'Orbitron', sans-serif;">Winter Solstice</h4>
+                                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">Snow map overlay and holiday drops.</p>
+                                        <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; margin: 0; box-shadow: none; color: #0ff; border-color: rgba(0,255,255,0.5);" onclick="window.location.href='404.html'">ACTIVATE EVENT</button>
+                                    </div>
+                                    <div style="background: rgba(255, 0, 255, 0.05); border: 1px solid rgba(255, 0, 255, 0.2); padding: 1.5rem; border-radius: 6px; text-align: center;">
+                                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">💀</div>
+                                        <h4 style="color: #f0f; margin-bottom: 0.5rem; font-family: 'Orbitron', sans-serif;">Blood Moon</h4>
+                                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">Hardcore mobs spawn everywhere.</p>
+                                        <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; margin: 0; background: rgba(255,0,255,0.2); color: #fff; border-color: #f0f; box-shadow: 0 0 10px rgba(255,0,255,0.3);" onclick="window.location.href='404.html'">END EVENT</button>
+                                    </div>
+                                    <div style="background: rgba(255, 255, 0, 0.05); border: 1px solid rgba(255, 255, 0, 0.2); padding: 1.5rem; border-radius: 6px; text-align: center;">
+                                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏆</div>
+                                        <h4 style="color: #ff0; margin-bottom: 0.5rem; font-family: 'Orbitron', sans-serif;">Arena Tourney</h4>
+                                        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">Enable ranked ladder for 48 hours.</p>
+                                        <button class="btn-submit" style="padding: 0.5rem; font-size: 0.75rem; margin: 0; box-shadow: none; color: #ff0; border-color: rgba(255,255,0,0.5);" onclick="window.location.href='404.html'">SCHEDULE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Economy Control -->
+                    <div id="admin-gene" class="tab-pane">
+                        <div class="page-title">
+                            <h1 style="text-shadow: 0 0 10px #f0f;">💰 Economy Control</h1>
+                            <p>Monitor market liquidity, inflation rates, and tax parameters.</p>
+                        </div>
+
+                        <!-- Economy Stats Grid -->
+                        <div class="stats-grid" style="margin-bottom: 2rem;">
+                            <div class="stat-box border-yellow">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">🪙</div>
+                                <div class="stat-label">Total Currency</div>
+                                <div class="stat-val">842.6B</div>
+                                <div class="stat-trend text-yellow">+1.2% this week</div>
+                            </div>
+                            <div class="stat-box border-cyan">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">📉</div>
+                                <div class="stat-label">Daily Sink Rate</div>
+                                <div class="stat-val">12.4B</div>
+                                <div class="stat-trend text-cyan">Healthy</div>
+                            </div>
+                            <div class="stat-box border-purple">
+                                <div class="stat-icon" style="font-size:1.5rem; margin-bottom:10px;">💹</div>
+                                <div class="stat-label">Inflation Index</div>
+                                <div class="stat-val">3.1%</div>
+                                <div class="stat-trend text-purple">Stabilizing</div>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid" style="grid-template-columns: 1fr;">
+                            <div class="panel">
+                                <h3 class="panel-title">🏪 Global Auction House Overview</h3>
+                                <div style="display: flex; gap: 2rem; margin-bottom: 1.5rem;">
+                                    <div style="flex: 1; background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 6px; border: 1px solid rgba(255,255,0,0.1);">
+                                        <h4 style="color: #ff0; margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">Most Traded Commodities</h4>
+                                        <ul style="list-style: none; padding: 0; color: #94a3b8; font-size: 0.9rem;">
+                                            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0;">
+                                                <span>Iron Ore</span><span style="color: #fff;">1.2M units</span>
+                                            </li>
+                                            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0;">
+                                                <span>Health Potion (T3)</span><span style="color: #fff;">850k units</span>
+                                            </li>
+                                            <li style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                                <span>Dragon Scales</span><span style="color: #fff;">14k units</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div style="flex: 1; background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 6px; border: 1px solid rgba(0,255,255,0.1);">
+                                        <h4 style="color: #0ff; margin-bottom: 1rem; font-family: 'Orbitron', sans-serif;">Market Health</h4>
+                                        <div class="chart-section" style="margin-bottom: 1rem;">
+                                            <div class="chart-label">Trading Volume (24h)</div>
+                                            <div class="bar-chart" style="height: 15px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; display: flex; align-items: flex-end; gap: 2px;">
+                                                <div class="bar bg-cyan" style="width: 16%; height: 20%;"></div>
+                                                <div class="bar bg-cyan-glow" style="width: 16%; height: 40%;"></div>
+                                                <div class="bar bg-cyan" style="width: 16%; height: 70%;"></div>
+                                                <div class="bar bg-cyan-glow" style="width: 16%; height: 50%;"></div>
+                                                <div class="bar bg-cyan" style="width: 16%; height: 85%;"></div>
+                                                <div class="bar bg-cyan-glow" style="width: 16%; height: 60%;"></div>
+                                            </div>
+                                        </div>
+                                        <p style="font-size: 0.8rem; color: #94a3b8;">Trading volume is up 18% compared to the 7-day moving average. No signs of market manipulation detected.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="middle-grid">
+                            <div class="panel">
+                                <h3 class="panel-title">⚖️ Tax & Sink Controls</h3>
+                                <div class="form-group-light" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <strong style="color: #fff;">Auction House Cut</strong>
+                                        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">Percentage taken from all sales.</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center;">
+                                        <input type="number" class="input-light" value="5" min="0" max="25" style="width: 80px; text-align: center; border-color: #ff0;">
+                                        <span style="color: #ff0; font-weight: bold; margin-left: 0.5rem;">%</span>
+                                    </div>
+                                </div>
+                                <div class="form-group-light" style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem;">
+                                    <div style="flex: 1;">
+                                        <strong style="color: #fff;">Fast Travel Cost Modifier</strong>
+                                        <p style="color: #94a3b8; font-size: 0.8rem; margin: 0;">Adjust global portal fee sink.</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center;">
+                                        <input type="number" class="input-light" value="1.0" step="0.1" style="width: 80px; text-align: center; border-color: #0ff;">
+                                        <span style="color: #0ff; font-weight: bold; margin-left: 0.5rem;">x</span>
+                                    </div>
+                                </div>
+                                <button class="btn-submit" style="margin-top: 1.5rem; margin-bottom: 0; color: #ff0; border-color: #ff0; box-shadow: inset 0 0 10px rgba(255,255,0,0.2), 0 0 10px rgba(255,255,0,0.2);" onclick="window.location.href='404.html'">UPDATE ECONOMY RULES</button>
+                            </div>
+                            <div class="panel">
+                                <h3 class="panel-title">🚨 Wealth Alerts</h3>
+                                <ul class="event-list" style="color: #94a3b8; font-size: 0.9rem; padding-left: 1rem; line-height: 1.6;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #f0f;">Suspicious Trade:</strong> Level 2 transferred 50M gold to Level 85. <a href="#" style="color: #f0f; text-decoration: none;">Review Log</a></li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #ff0;">RMT Flag:</strong> Account 'GoldSeller99' reached wealth threshold limits. IP flagged.</li>
+                                    <li><strong style="color: #0ff;">Dupe Check:</strong> 0 duplicated items detected in the last 48 hours.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

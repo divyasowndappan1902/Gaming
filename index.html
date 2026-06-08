@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- Sign In View -->
+    <section id="login-view" class="view active">
+        <div class="login-card">
+            <div class="logo-container">
+                <img src="logo.webp" alt="STACKLY" style="height: 50px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));">
+            </div>
+            <h2>Player Login</h2>
+            <p class="subtitle">Enter the portal to resume your session</p>
+            
+            <form id="login-form">
+                <div id="login-error" class="error-message" style="display: none; background: rgba(255, 0, 85, 0.15); border: 1px solid rgba(255, 0, 85, 0.3); color: #ff0055; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.85rem; font-weight: 600; text-align: left; align-items: center; gap: 0.5rem;"><span style="font-size: 1rem;">⚠️</span> <span id="error-text">Access Denied</span></div>
+                
+                <div class="form-group">
+                    <label for="role-select">Select Class</label>
+                    <div class="input-wrapper select-wrapper">
+                        <select id="role-select" required>
+                            <option value="player">Player</option>
+                            <option value="admin">Game Master</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Player ID (Email)</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👾</span>
+                        <input type="email" id="email" placeholder="player@game.gg" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Passcode</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <span class="input-icon right" id="toggle-password">👁️</span>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember">
+                        Remember Me
+                    </label>
+                    <a href="#" class="forgot-link">Lost Passcode?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">INITIALIZE LINK</button>
+
+                <p class="signup-link">New here? <a href="#" id="go-to-signup">Join Game</a></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Signup View -->
+    <div class="login-container view" id="signup-view" style="display: none; opacity: 0; transition: opacity 0.5s ease; align-items: center; justify-content: center; padding: 2rem; background-image: radial-gradient(circle at 15% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 85% 30%, rgba(255, 0, 255, 0.1) 0%, transparent 50%); min-height: 100vh; width: 100%; position: absolute; top: 0; left: 0; box-sizing: border-box;">
+        <div class="login-card" style="padding-top: 2rem; padding-bottom: 2rem; margin: auto;">
+            <div class="logo-container">
+                <img src="logo.webp" alt="STACKLY" style="height: 40px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));">
+            </div>
+            
+            <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; background: linear-gradient(to right, #0ff, #f0f); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Orbitron', sans-serif;">Create Avatar</h2>
+            <p class="subtitle">Register your profile to join the server</p>
+
+            <form id="signup-form" style="text-align: left;">
+                <div id="signup-error" class="error-message" style="display: none; background: rgba(255, 0, 85, 0.15); border: 1px solid rgba(255, 0, 85, 0.3); color: #ff0055; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.85rem; font-weight: 600; text-align: left; align-items: center; gap: 0.5rem;"><span style="font-size: 1rem;">⚠️</span> <span id="signup-error-text">Invalid Data</span></div>
+                
+                <div class="form-group">
+                    <label for="signup-name">Gamertag / Full Name</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="signup-name" placeholder="ZeroCool">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-role">Class Selection</label>
+                    <div class="input-wrapper select-wrapper">
+                        <select id="signup-role">
+                            <option value="" disabled selected hidden>Select your class...</option>
+                            <option value="player">Player</option>
+                            <option value="admin">Game Master</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">Player ID (Email)</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="signup-email" placeholder="player@game.gg">
+                    </div>
+                </div>
+
+                <div class="password-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="signup-password">Passcode</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signup-password" placeholder="••••••••">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Verify Passcode</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signup-confirm" placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-options" style="margin-top:0.5rem; justify-content: flex-start;">
+                    <label class="checkbox-label" style="font-size: 0.75rem;">
+                        <input type="checkbox" id="signup-terms">
+                        <span>I accept the <a href="#" style="color:#0ff; text-decoration:none; text-shadow: 0 0 5px rgba(0,255,255,0.5);">Server Rules</a></span>
+                    </label>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="handleSignup()">SPAWN AVATAR</button>
+            </form>
+
+            <p class="signup-text">Already a player? <a href="#" id="go-to-login">Sign In</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
