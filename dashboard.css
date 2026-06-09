@@ -523,3 +523,15 @@
 .sidebar-overlay.active {
     display: block;
 }
+
+@media (max-width: 768px) {
+    .mobile-stack {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    .mobile-stack > div, .mobile-stack > button {
+        width: 100% !important;
+        text-align: left !important;
+    }
+}
