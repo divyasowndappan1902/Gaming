@@ -169,8 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Close sidebar on mobile after clicking
             const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
             if (sidebar && sidebar.classList.contains('open')) {
                 sidebar.classList.remove('open');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                }
             }
         });
     });
@@ -178,11 +182,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Mobile Menu Toggle
     const mobileMenuBtns = document.querySelectorAll('.mobile-menu-btn');
     const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
     if (mobileMenuBtns.length > 0 && sidebar) {
         mobileMenuBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 sidebar.classList.toggle('open');
+                if (overlay) {
+                    overlay.classList.toggle('active');
+                }
             });
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
         });
     }
 

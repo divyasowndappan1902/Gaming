@@ -449,8 +449,77 @@
     .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
     .middle-grid, .bottom-grid { grid-template-columns: 1fr !important; gap: 1rem; }
     .page-title h1 { font-size: 1.5rem; }
-    .panel table { display: block; overflow-x: auto; white-space: nowrap; }
+    /* Responsive Table Stacking */
+    .panel table, .panel thead, .panel tbody, .panel th, .panel td, .panel tr {
+        display: block;
+        white-space: normal;
+    }
+    .panel tr:first-child {
+        display: none;
+    }
+    .panel tr {
+        margin-bottom: 1rem;
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    .panel td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    .panel td:last-child {
+        border-bottom: none !important;
+    }
+    .panel td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #0ff;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+    
+    /* Fix inline grids and flex layouts */
+    div[style*="display: grid; grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+    div[style*="display: flex; gap: 2rem"] {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    /* Fix top headers in tabs to stack */
+    div[style*="justify-content: space-between; align-items: flex-end"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    /* Fix campaign quest header */
+    div[style*="justify-content: space-between; align-items: flex-start"] {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    /* Fix inventory filters */
+    div[style*="display: flex; gap: 0.5rem;"] {
+        flex-wrap: wrap !important;
+    }
 }
 @media (max-width: 480px) {
     .stats-grid { grid-template-columns: 1fr; }
+    .portal-grid { grid-template-columns: 1fr; }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+}
+.sidebar-overlay.active {
+    display: block;
 }
